@@ -1,5 +1,7 @@
 # Avixer - AVI Muxer and Demuxer Library
 
+⚠️ **WARNING: This code has been generated with Claude AI and is NOT production ready. Use at your own risk for educational or experimental purposes only.**
+
 Avixer is a Go library and command-line tool for reading and writing AVI (Audio Video Interleave) files. It provides easy-to-use interfaces for both library usage and command-line operations.
 
 ## Features
