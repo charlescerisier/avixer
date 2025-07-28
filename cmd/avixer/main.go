@@ -45,19 +45,19 @@ type PacketInfo struct {
 	Flags        string `json:"flags"`
 }
 
-// StreamInfo represents stream information for JSON output  
+// StreamInfo represents stream information for JSON output
 type StreamInfo struct {
-	Index     int                    `json:"index"`
-	CodecType string                 `json:"codec_type"`
-	CodecName string                 `json:"codec_name,omitempty"`
-	Width     int                    `json:"width,omitempty"`
-	Height    int                    `json:"height,omitempty"`
-	FPS       float64                `json:"fps,omitempty"`
-	Channels  int                    `json:"channels,omitempty"`
-	SampleRate int                   `json:"sample_rate,omitempty"`
-	BitDepth  int                    `json:"bit_depth,omitempty"`
-	Duration  string                 `json:"duration,omitempty"`
-	Tags      map[string]interface{} `json:"tags,omitempty"`
+	Index      int                    `json:"index"`
+	CodecType  string                 `json:"codec_type"`
+	CodecName  string                 `json:"codec_name,omitempty"`
+	Width      int                    `json:"width,omitempty"`
+	Height     int                    `json:"height,omitempty"`
+	FPS        float64                `json:"fps,omitempty"`
+	Channels   int                    `json:"channels,omitempty"`
+	SampleRate int                    `json:"sample_rate,omitempty"`
+	BitDepth   int                    `json:"bit_depth,omitempty"`
+	Duration   string                 `json:"duration,omitempty"`
+	Tags       map[string]interface{} `json:"tags,omitempty"`
 }
 
 // FileOutput represents the complete file information for JSON output
@@ -92,7 +92,7 @@ func parseFlags() Config {
 	flag.StringVar(&config.InputFile, "i", "", "Input AVI file")
 	flag.StringVar(&config.OutputFile, "o", "", "Output file (default: input.avi.json)")
 	flag.BoolVar(&config.ShowStreams, "show-streams", true, "Show stream information")
-	flag.BoolVar(&config.ShowPackets, "show-packets", false, "Show packet information")
+	flag.BoolVar(&config.ShowPackets, "show-packets", true, "Show packet information")
 	flag.BoolVar(&config.Verbose, "v", false, "Verbose output")
 
 	var format string
@@ -249,7 +249,7 @@ func generateTextOutput(config Config, fileInfo *avi.FileInfo, streams []avi.Str
 		fmt.Fprintf(output, "Streams:\n")
 		for _, stream := range streams {
 			fmt.Fprintf(output, "  Stream #%d: %s", stream.Index, string(stream.Type))
-			
+
 			if stream.Type == avi.StreamTypeVideo {
 				fmt.Fprintf(output, " (%s) %dx%d", stream.Codec.Name, stream.Codec.Width, stream.Codec.Height)
 				if stream.Codec.FPS > 0 {
@@ -261,7 +261,7 @@ func generateTextOutput(config Config, fileInfo *avi.FileInfo, streams []avi.Str
 					fmt.Fprintf(output, ", %d bit", stream.Codec.BitDepth)
 				}
 			}
-			
+
 			if stream.Duration > 0 {
 				fmt.Fprintf(output, ", duration: %v", stream.Duration)
 			}
@@ -297,14 +297,14 @@ func readRealPackets(demuxer avi.Demuxer) ([]avi.Packet, error) {
 	if !ok {
 		return nil, fmt.Errorf("demuxer is not a Reader type")
 	}
-	
+
 	return reader.ReadAllPackets()
 }
 
 // convertPacketsToJSON converts avi.Packet slice to PacketInfo slice for JSON output
 func convertPacketsToJSON(packets []avi.Packet) []PacketInfo {
 	var jsonPackets []PacketInfo
-	
+
 	for _, packet := range packets {
 		jsonPacket := PacketInfo{
 			CodecType:    string(packet.Codec),
@@ -317,16 +317,16 @@ func convertPacketsToJSON(packets []avi.Packet) []PacketInfo {
 			Pos:          fmt.Sprintf("%d", packet.Position),
 			Flags:        packet.Flags,
 		}
-		
-		// Add PTS for audio packets or when PTS != DTS  
+
+		// Add PTS for audio packets or when PTS != DTS
 		if packet.Codec == avi.StreamTypeAudio || packet.PTS != packet.DTS {
 			pts := packet.PTS
 			jsonPacket.PTS = &pts
 			jsonPacket.PTSTime = fmt.Sprintf("%.6f", packet.PTSTime.Seconds())
 		}
-		
+
 		jsonPackets = append(jsonPackets, jsonPacket)
 	}
-	
+
 	return jsonPackets
 }

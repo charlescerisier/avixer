@@ -1,3 +1,3 @@
-module github.com/avixer/avixer
+module github.com/charlescerisier/avixer
 
 go 1.21
