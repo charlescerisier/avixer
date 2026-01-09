@@ -83,7 +83,7 @@ import (
     "fmt"
     "log"
     
-    "github.com/avixer/avixer/avi"
+    "github.com/charlescerisier/avixer/avi"
 )
 
 func main() {
@@ -134,7 +134,7 @@ package main
 import (
     "log"
     
-    "github.com/avixer/avixer/avi"
+    "github.com/charlescerisier/avixer/avi"
 )
 
 func main() {
@@ -229,7 +229,7 @@ import (
     "log"
     "os"
     
-    "github.com/avixer/avixer/avi"
+    "github.com/charlescerisier/avixer/avi"
 )
 
 func main() {

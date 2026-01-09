@@ -95,7 +95,7 @@ lint:
 # Generate Go documentation
 docs:
 	@echo "Generating documentation..."
-	@echo "Visit http://localhost:6060/pkg/github.com/avixer/avixer/"
+	@echo "Visit http://localhost:6060/pkg/github.com/charlescerisier/avixer/"
 	godoc -http=:6060
 
 # Cross-compile for different platforms
