@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/avixer/avixer/avi"
+	"github.com/charlescerisier/avixer/avi"
 )
 
 func main() {

@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/avixer/avixer/avi"
+	"github.com/charlescerisier/avixer/avi"
 )
 
 func main() {

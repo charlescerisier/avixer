@@ -16,13 +16,13 @@ Avixer is a Go library and command-line tool for reading and writing AVI (Audio 
 ## Installation
 
 ```bash
-go install github.com/avixer/avixer/cmd/avixer@latest
+go install github.com/charlescerisier/avixer/cmd/avixer@latest
 ```
 
 Or build from source:
 
 ```bash
-git clone https://github.com/avixer/avixer
+git clone https://github.com/charlescerisier/avixer
 cd avixer
 go build ./cmd/avixer
 ```

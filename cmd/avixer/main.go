@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/avixer/avixer/avi"
+	"github.com/charlescerisier/avixer/avi"
 )
 
 // OutputFormat represents different output formats

@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/avixer/avixer/avi"
+	"github.com/charlescerisier/avixer/avi"
 )
 
 // Config holds CLI configuration
